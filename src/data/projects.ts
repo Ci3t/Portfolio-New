@@ -8,10 +8,11 @@ export const projects: Project[] = [
     description:
       "A live game-analysis and prediction tool with custom calculations and accuracy-focused logic. Built to trace, calculate, and surface high-confidence outcomes through a clean interface.",
     tags: ["Next.js", "TypeScript", "Algorithms", "UI Engineering"],
-    liveUrl: undefined,
+    liveUrl: "https://ci3t.github.io/Svarog-Tracer/",
     codeUrl: undefined,
+    imageUrl: "/svarog.png",
     featured: true,
-    placeholder: true,
+    placeholder: false,
   },
   {
     id: "zerotwo",
@@ -32,9 +33,10 @@ export const projects: Project[] = [
     description:
       "An AI-powered form builder that turns a prompt into a previewable survey, collects responses, and exports them. Focused on generation flow, UI state, and data handling.",
     tags: ["Next.js", "DrizzleORM", "shadcn/ui", "Stripe", "MySQL"],
-    liveUrl: undefined,
+    liveUrl: "https://formai-sandy.vercel.app/",
     codeUrl: undefined,
+    imageUrl: "/formai.png",
     featured: false,
-    placeholder: true,
+    placeholder: false,
   },
 ];

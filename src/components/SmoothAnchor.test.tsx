@@ -5,7 +5,7 @@ import { SmoothAnchor } from "./SmoothAnchor";
 
 describe("SmoothAnchor", () => {
   it("scrolls to the target and replaces the hash without duplication", async () => {
-    const scrollIntoView = vi.fn();
+    const dispatchEvent = vi.spyOn(window, 'dispatchEvent');
     const replaceState = vi.fn();
 
     Object.defineProperty(window, "location", {
@@ -19,7 +19,6 @@ describe("SmoothAnchor", () => {
 
     const target = document.createElement("section");
     target.id = "projects";
-    target.scrollIntoView = scrollIntoView;
     document.body.appendChild(target);
 
     render(
@@ -30,9 +29,10 @@ describe("SmoothAnchor", () => {
 
     await userEvent.click(screen.getByRole("link", { name: /Projects/i }));
 
-    expect(scrollIntoView).toHaveBeenCalledWith({ behavior: "smooth", block: "start" });
+    expect(dispatchEvent).toHaveBeenCalledWith(expect.any(CustomEvent));
     expect(replaceState).toHaveBeenCalledWith(null, "", "#projects");
 
     document.body.removeChild(target);
+    dispatchEvent.mockRestore();
   });
 });

@@ -19,7 +19,13 @@ export function BackToTop() {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    try {
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("lenisScrollTo", { detail: { target: 0 } }));
+      }
+    } catch (e) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
     window.history.replaceState(null, "", "#hero");
   };
 

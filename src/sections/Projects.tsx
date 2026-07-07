@@ -17,7 +17,7 @@ export function Projects() {
           </TechLabel>
         </Reveal>
         <Reveal variant="mask" delay={0.1}>
-          <h2 className="font-display text-headline-lg text-high-def-white">Projects</h2>
+          <h2 className="font-display text-4xl font-bold tracking-tighter text-white">Active Operations</h2>
         </Reveal>
       </div>
 

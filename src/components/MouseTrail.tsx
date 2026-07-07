@@ -1,75 +1,115 @@
 "use client";
 
 import { useReducedMotion } from "@/lib/useReducedMotion";
-import { motion, useSpring } from "motion/react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
-const tail = Array.from({ length: 5 }, (_, index) => index);
+class Point {
+  x: number;
+  y: number;
+  age: number;
+  constructor(x: number, y: number) {
+    this.x = x;
+    this.y = y;
+    this.age = 0;
+  }
+}
 
 export function MouseTrail() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const reduced = useReducedMotion();
 
-  const dotX = useSpring(0, { damping: 28, stiffness: 240 });
-  const dotY = useSpring(0, { damping: 28, stiffness: 240 });
-  const ringX = useSpring(0, { damping: 48, stiffness: 120 });
-  const ringY = useSpring(0, { damping: 48, stiffness: 120 });
-  const glowX = useSpring(0, { damping: 70, stiffness: 70 });
-  const glowY = useSpring(0, { damping: 70, stiffness: 70 });
-
   useEffect(() => {
-    if (reduced) return;
-    if (typeof window === "undefined") return;
-    if (window.innerWidth < 768) return;
+    if (reduced || typeof window === "undefined" || window.innerWidth < 768) return;
 
-    const handleMove = (event: MouseEvent) => {
-      dotX.set(event.clientX);
-      dotY.set(event.clientY);
-      ringX.set(event.clientX);
-      ringY.set(event.clientY);
-      glowX.set(event.clientX);
-      glowY.set(event.clientY);
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let points: Point[] = [];
+    let animationFrameId: number;
+
+    const setSize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    setSize();
+    window.addEventListener("resize", setSize);
+
+    const addPoint = (e: MouseEvent) => {
+      points.push(new Point(e.clientX, e.clientY));
+    };
+    window.addEventListener("mousemove", addPoint);
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Update ages and filter out dead points
+      points.forEach((p) => (p.age += 1));
+      points = points.filter((p) => p.age < 35); // Trail length
+
+      if (points.length > 1) {
+        ctx.beginPath();
+        // Move to first point
+        ctx.moveTo(points[0].x, points[0].y);
+
+        // Draw smooth curve through points
+        for (let i = 1; i < points.length - 1; i++) {
+          const xc = (points[i].x + points[i + 1].x) / 2;
+          const yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+        }
+        // Connect to the last point
+        const lastPoint = points[points.length - 1];
+        ctx.lineTo(lastPoint.x, lastPoint.y);
+
+        // Gradient for the trail (fading out at the tail)
+        if (points.length > 1) {
+          const grad = ctx.createLinearGradient(
+            points[0].x, points[0].y,
+            lastPoint.x, lastPoint.y
+          );
+          // Purple to transparent
+          grad.addColorStop(0, "rgba(168, 85, 247, 0)"); // Tail end (oldest)
+          grad.addColorStop(1, "rgba(168, 85, 247, 0.8)"); // Head (newest)
+          
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = 4;
+          ctx.lineCap = "round";
+          ctx.lineJoin = "round";
+          ctx.shadowBlur = 15;
+          ctx.shadowColor = "rgba(168, 85, 247, 0.5)";
+          ctx.stroke();
+        }
+        
+        // Draw the head glow
+        ctx.beginPath();
+        ctx.arc(lastPoint.x, lastPoint.y, 4, 0, Math.PI * 2);
+        ctx.fillStyle = "#d8b4fe";
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = "#a855f7";
+        ctx.fill();
+      }
+
+      animationFrameId = requestAnimationFrame(draw);
     };
 
-    window.addEventListener("mousemove", handleMove);
-    return () => window.removeEventListener("mousemove", handleMove);
-  }, [reduced, dotX, dotY, ringX, ringY, glowX, glowY]);
+    draw();
+
+    return () => {
+      window.removeEventListener("resize", setSize);
+      window.removeEventListener("mousemove", addPoint);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [reduced]);
 
   if (reduced) return null;
 
   return (
-    <>
-      <motion.div
-        className="pointer-events-none fixed z-[60] hidden h-28 w-28 rounded-full bg-primary/10 blur-3xl md:block"
-        style={{ x: glowX, y: glowY, translateX: "-50%", translateY: "-50%" }}
-        aria-hidden="true"
-      />
-      {tail.map((index) => (
-        <motion.div
-          key={index}
-          className="pointer-events-none fixed z-[61] hidden rounded-full bg-cyan-300/50 md:block"
-          style={{
-            x: dotX,
-            y: dotY,
-            translateX: "-50%",
-            translateY: "-50%",
-            width: 8 - index,
-            height: 8 - index,
-            opacity: 0.22 - index * 0.03,
-            transitionDelay: `${index * 22}ms`,
-          }}
-          aria-hidden="true"
-        />
-      ))}
-      <motion.div
-        className="pointer-events-none fixed z-[62] hidden h-2.5 w-2.5 rounded-full bg-primary shadow-[0_0_18px_rgba(251,188,0,0.8)] md:block"
-        style={{ x: dotX, y: dotY, translateX: "-50%", translateY: "-50%" }}
-        aria-hidden="true"
-      />
-      <motion.div
-        className="pointer-events-none fixed z-[61] hidden h-9 w-9 rounded-full border border-cyan-300/35 mix-blend-screen md:block"
-        style={{ x: ringX, y: ringY, translateX: "-50%", translateY: "-50%" }}
-        aria-hidden="true"
-      />
-    </>
+    <canvas
+      ref={canvasRef}
+      className="pointer-events-none fixed inset-0 z-[60] hidden md:block"
+      aria-hidden="true"
+    />
   );
 }

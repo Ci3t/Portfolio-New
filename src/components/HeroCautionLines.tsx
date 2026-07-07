@@ -54,7 +54,7 @@ export function HeroCautionLines() {
       <MovingBand
         text="INNOVATIVE / RESPONSIVE / ACCESSIBLE / "
         reverse
-        className="hero-band hero-band-amber absolute -right-1/3 top-[60%] h-7 w-[150%] -rotate-12 overflow-hidden border-y border-amber-400/10 bg-amber-400/5 font-mono text-[8px] uppercase tracking-[0.24em] text-amber-400/38"
+        className="hero-band hero-band-purple absolute -right-1/3 top-[60%] h-7 w-[150%] -rotate-12 overflow-hidden border-y border-purple-400/10 bg-purple-400/5 font-mono text-[8px] uppercase tracking-[0.24em] text-purple-400/38"
       />
     </div>
   );

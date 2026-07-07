@@ -14,29 +14,29 @@
   --color-surface-container-highest: #353437;
   --color-surface-variant: #353437;
   --color-on-surface: #e5e1e4;
-  --color-on-surface-variant: #d4c5ab;
+  --color-on-surface-variant: #a1a1aa; /* cool gray */
 
   /* Signal accents */
-  --color-primary: #ffe2ab;
-  --color-on-primary: #402d00;
-  --color-primary-container: #ffbf00;
-  --color-on-primary-container: #6d5000;
-  --color-primary-fixed: #ffdfa0;
-  --color-primary-fixed-dim: #fbbc00;
-  --color-on-primary-fixed: #261a00;
-  --color-on-primary-fixed-variant: #5c4300;
+  --color-primary: #d8b4fe; /* purple-200 */
+  --color-on-primary: #3b0764; /* purple-900 */
+  --color-primary-container: #a855f7; /* purple-500 */
+  --color-on-primary-container: #f3e8ff; /* purple-100 */
+  --color-primary-fixed: #e9d5ff; /* purple-300 */
+  --color-primary-fixed-dim: #9333ea; /* purple-600 */
+  --color-on-primary-fixed: #2e1065; /* purple-950 */
+  --color-on-primary-fixed-variant: #581c87; /* purple-800 */
 
-  --color-secondary: #cfbcff;
-  --color-on-secondary: #3b0092;
-  --color-secondary-container: #6d09ff;
-  --color-on-secondary-container: #dccdff;
+  --color-secondary: #67e8f9; /* cyan-200 */
+  --color-on-secondary: #083344; /* cyan-900 */
+  --color-secondary-container: #06b6d4; /* cyan-500 */
+  --color-on-secondary-container: #cffafe; /* cyan-100 */
 
   --color-tertiary: #e7e4e8;
   --color-on-tertiary: #303033;
 
   /* Structural */
-  --color-outline: #9c8f78;
-  --color-outline-variant: #504532;
+  --color-outline: #52525b; /* zinc-600 */
+  --color-outline-variant: #27272a; /* zinc-800 */
   --color-terminal-dim: #404044;
   --color-brushed-obsidian: #0a0a0c;
   --color-wet-asphalt: #16161a;
@@ -44,9 +44,9 @@
   --color-error: #ffb4ab;
 
   /* Typography */
-  --font-display: "Arial Black", Impact, ui-sans-serif, system-ui, sans-serif;
-  --font-body: Inter, Arial, ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Cascadia Code", "Consolas", ui-monospace, monospace;
+  --font-display: "Helvetica Neue", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Fira Code", "Cascadia Code", monospace;
 
   /* Custom type scale utilities */
   --text-display-xl: clamp(64px, 10vw, 120px);
@@ -145,25 +145,27 @@
   .ambient-glow {
     box-shadow: 0 0 120px 20px rgba(251, 188, 0, 0.08);
   }
-
-  .grid-pulse {
-    animation: gridPulse 8s ease-in-out infinite;
-  }
-}
-
-@keyframes gridPulse {
-  0%,
-  100% {
-    opacity: 0.4;
-  }
-  50% {
-    opacity: 0.7;
-  }
 }
 
 .animate-spin-slow {
   animation: spin 12s linear infinite;
 }
+
+@keyframes scan {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(400px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 0; }
+}
+
+.animate-scan {
+  animation: scan 3s ease-in-out infinite;
+}
+
+.translate-z-10 { transform: translateZ(10px); }
+.translate-z-20 { transform: translateZ(20px); }
+.translate-z-30 { transform: translateZ(30px); }
+.translate-z-40 { transform: translateZ(40px); }
+.translate-z-50 { transform: translateZ(50px); }
 
 .animate-reverse-spin {
   animation: reverseSpin 16s linear infinite;
@@ -227,7 +229,7 @@
   animation: bandDriftViolet 10s ease-in-out infinite;
 }
 
-.hero-band-amber {
+.hero-band-purple {
   animation: bandDriftAmber 9s ease-in-out infinite;
 }
 

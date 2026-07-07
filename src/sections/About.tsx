@@ -15,7 +15,7 @@ export function About() {
           </TechLabel>
         </Reveal>
         <Reveal variant="mask" delay={0.1}>
-          <h2 className="font-display text-headline-lg text-high-def-white">About</h2>
+          <h2 className="font-display text-headline-lg text-high-def-white">Identity</h2>
         </Reveal>
       </div>
 

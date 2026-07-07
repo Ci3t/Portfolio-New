@@ -12,7 +12,7 @@ const badgePositions = [
   { label: "TypeScript", position: [-1.3, 0.8, -1.1], className: "border-blue-400/45 text-blue-300" },
   { label: "Node", position: [0.9, 1.4, -0.9], className: "border-emerald-400/45 text-emerald-300" },
   { label: "MongoDB", position: [1.6, -0.5, -0.9], className: "border-green-400/35 text-green-300" },
-  { label: "MySQL", position: [-0.9, -1.5, -0.9], className: "border-yellow-400/40 text-yellow-300" },
+  { label: "MySQL", position: [-0.9, -1.5, -0.9], className: "border-purple-400/40 text-purple-300" },
   { label: "Stripe", position: [0, -1.3, 1.5], className: "border-violet-400/45 text-violet-300" },
   { label: "OpenAI", position: [-1.6, 0.2, -1.1], className: "border-primary/50 text-primary" },
   { label: "GitHub", position: [1.1, -1.1, 1.1], className: "border-white/40 text-white" },
@@ -34,11 +34,11 @@ function WireGlobe() {
     <group ref={groupRef} scale={1.7}>
       <mesh>
         <sphereGeometry args={[1, 64, 64]} />
-        <meshBasicMaterial color="#00cce0" transparent opacity={0.03} />
+        <meshBasicMaterial color="#a855f7" transparent opacity={0.03} />
       </mesh>
       <mesh>
         <sphereGeometry args={[1.01, 64, 64]} />
-        <meshBasicMaterial color="#00cce0" wireframe transparent opacity={0.12} />
+        <meshBasicMaterial color="#a855f7" wireframe transparent opacity={0.12} />
       </mesh>
       {latitudes.map((lat) => {
         const radius = Math.cos((lat * Math.PI) / 180);
@@ -46,31 +46,34 @@ function WireGlobe() {
         return (
           <mesh key={lat} position={[0, y, 0]} rotation={[Math.PI / 2, 0, 0]}>
             <torusGeometry args={[radius, 0.0025, 8, 180]} />
-            <meshBasicMaterial color="#00cce0" transparent opacity={0.32} />
+            <meshBasicMaterial color="#a855f7" transparent opacity={0.32} />
           </mesh>
         );
       })}
       {longitudes.map((angle) => (
         <mesh key={angle} rotation={[0, (angle * Math.PI) / 180, 0]}>
           <torusGeometry args={[1, 0.0025, 8, 180]} />
-          <meshBasicMaterial color="#00cce0" transparent opacity={0.24} />
+          <meshBasicMaterial color="#a855f7" transparent opacity={0.24} />
         </mesh>
       ))}
       <mesh rotation={[1.1, 0.25, 0.7]}>
         <torusGeometry args={[1.18, 0.005, 8, 220]} />
-        <meshBasicMaterial color="#00cce0" transparent opacity={0.4} />
+        <meshBasicMaterial color="#c084fc" transparent opacity={0.4} />
       </mesh>
       <mesh rotation={[0.45, -0.75, -0.45]}>
         <torusGeometry args={[1.28, 0.004, 8, 220]} />
-        <meshBasicMaterial color="#00cce0" transparent opacity={0.3} />
+        <meshBasicMaterial color="#d8b4fe" transparent opacity={0.3} />
       </mesh>
       {badgePositions.map((badge, idx) => (
         <group key={idx} position={badge.position as [number, number, number]}>
           <Html center>
             <div
-              className={`whitespace-nowrap rounded-full border bg-background/80 px-3 py-1.5 font-mono text-[11px] font-bold shadow-[0_0_22px_rgba(0,204,220,0.1)] backdrop-blur ${badge.className}`}
+              className={`group cursor-pointer whitespace-nowrap rounded-full border bg-background/80 px-3 py-1.5 font-mono text-[11px] font-bold shadow-[0_0_22px_rgba(0,204,220,0.1)] backdrop-blur transition-all duration-300 hover:scale-125 hover:border-cyan-400 hover:bg-black hover:text-cyan-400 hover:shadow-[0_0_20px_rgba(34,211,238,0.4)] ${badge.className}`}
             >
               {badge.label}
+              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-black border border-cyan-400/50 text-cyan-400 text-[9px] px-2 py-1 rounded whitespace-nowrap pointer-events-none">
+                Inspect Node
+              </div>
             </div>
           </Html>
         </group>
@@ -82,7 +85,7 @@ function WireGlobe() {
 function KnowledgeCoreFallback() {
   return (
     <div className="absolute inset-0 flex items-center justify-center">
-      <div className="relative h-80 w-80 rounded-full border border-cyan-400/30 bg-cyan-400/5 shadow-[0_0_80px_rgba(0,204,220,0.16)]" />
+      <div className="relative h-80 w-80 rounded-full border border-purple-400/30 bg-purple-400/5 shadow-[0_0_80px_rgba(168,85,247,0.16)]" />
     </div>
   );
 }
@@ -92,16 +95,16 @@ export function KnowledgeGlobe() {
 
   return (
     <div className="relative h-[640px] w-full overflow-visible">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,204,220,0.08),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.08),transparent_50%)]" />
 
       {isTest ? (
         <KnowledgeCoreFallback />
       ) : (
         <Canvas className="!absolute !inset-0 !h-full !w-full" camera={{ position: [0, 0, 5.5], fov: 40 }} dpr={[1, 1.5]}>
           <ambientLight intensity={0.6} />
-          <pointLight position={[3, 2, 4]} intensity={2.2} color="#00cce0" />
-          <pointLight position={[-3, -2, -2]} intensity={1.4} color="#fbbc00" />
-          <Sparkles count={130} speed={0.28} scale={6.3} size={1.15} color="#00cce0" />
+          <pointLight position={[3, 2, 4]} intensity={2.2} color="#a855f7" />
+          <pointLight position={[-3, -2, -2]} intensity={1.4} color="#06b6d4" />
+          <Sparkles count={130} speed={0.28} scale={6.3} size={1.15} color="#d8b4fe" />
           <WireGlobe />
           <OrbitControls enablePan={false} enableZoom={false} autoRotate autoRotateSpeed={0.6} />
         </Canvas>

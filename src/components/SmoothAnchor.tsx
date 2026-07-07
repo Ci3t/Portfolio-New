@@ -13,7 +13,11 @@ export function SmoothAnchor({ href, children, onClick, ...props }: SmoothAnchor
       event.preventDefault();
       const target = document.querySelector<HTMLElement>(href);
       if (target) {
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        try {
+          window.dispatchEvent(new CustomEvent("lenisScrollTo", { detail: { target } }));
+        } catch (e) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
       }
       window.history.replaceState(null, "", href);
     }

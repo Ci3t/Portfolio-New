@@ -1,5 +1,7 @@
 import { ActiveSectionProvider } from "@/components/ActiveSectionProvider";
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
+import { ScanModeProvider } from "@/components/ScanModeProvider";
+import { PortfolioHUD } from "@/components/PortfolioHUD";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -18,7 +20,12 @@ export default function RootLayout({
     <html lang="en" className="dark h-full scroll-smooth antialiased">
       <body className="min-h-full bg-background font-body text-on-surface">
         <SmoothScrollProvider>
-          <ActiveSectionProvider>{children}</ActiveSectionProvider>
+          <ActiveSectionProvider>
+            <ScanModeProvider>
+              <PortfolioHUD />
+              {children}
+            </ScanModeProvider>
+          </ActiveSectionProvider>
         </SmoothScrollProvider>
       </body>
     </html>

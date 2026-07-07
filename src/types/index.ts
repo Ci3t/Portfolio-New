@@ -13,6 +13,7 @@ export interface Project {
   tags: string[];
   liveUrl?: string;
   codeUrl?: string;
+  imageUrl?: string;
   featured: boolean;
   placeholder: boolean;
 }

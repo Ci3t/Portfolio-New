@@ -10,11 +10,11 @@ export function Experience() {
       <div className="mb-12">
         <Reveal variant="mask">
           <TechLabel dim className="mb-2 block">
-            {"// CHRONICLES"}
+            {"// MISSION_LOG"}
           </TechLabel>
         </Reveal>
         <Reveal variant="mask" delay={0.1}>
-          <h2 className="font-display text-headline-lg text-high-def-white">Experience</h2>
+          <h2 className="font-display text-headline-lg text-high-def-white">Chronology</h2>
         </Reveal>
       </div>
 

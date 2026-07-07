@@ -25,7 +25,7 @@ export function Contact() {
           </TechLabel>
         </Reveal>
         <Reveal variant="mask" delay={0.1}>
-          <h2 className="font-display text-headline-lg text-high-def-white">Contact</h2>
+          <h2 className="font-display text-headline-lg text-high-def-white">Uplink</h2>
         </Reveal>
       </div>
 
