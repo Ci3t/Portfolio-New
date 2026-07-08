@@ -44,7 +44,7 @@ export const contact: {
     {
       id: "cv",
       label: "Download CV",
-      href: "/CV-updated.pdf",
+      href: "/Rani-Ali-CV-8-2026.pdf",
       kind: "cv",
     },
   ],
