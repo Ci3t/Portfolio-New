@@ -20,9 +20,10 @@ describe("Portfolio page", () => {
 
   it("renders navigation anchors", () => {
     renderWithProviders(<Page />);
-    expect(screen.getByRole("link", { name: /Deployments/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Chronicles/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Uplink/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Projects/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Experience/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Reference/i })).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: /Contact/i }).length).toBeGreaterThanOrEqual(1);
   });
 
   it("renders projects from data", () => {
@@ -35,7 +36,7 @@ describe("Portfolio page", () => {
   it("renders experience timeline", () => {
     renderWithProviders(<Page />);
     expect(screen.getByText("Appleseeds")).toBeInTheDocument();
-    expect(screen.getByText("Samplead")).toBeInTheDocument();
+    expect(screen.getAllByText("Samplead").length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText("Strauss Group")).toBeInTheDocument();
   });
 
@@ -52,7 +53,7 @@ describe("Portfolio page", () => {
     renderWithProviders(<Page />);
     const githubLinks = screen
       .getAllByRole("link")
-      .filter((el) => el.getAttribute("href") === "https://github.com/Ci3t");
+      .filter((el) => el.getAttribute("href") === "https://github.com/Ci3t/");
     expect(githubLinks.length).toBeGreaterThanOrEqual(1);
   });
 
@@ -77,7 +78,7 @@ describe("Portfolio page", () => {
 
   it("renders skill categories and bars", () => {
     renderWithProviders(<Page />);
-    expect(screen.getByRole("tab", { name: /Frontend/i })).toBeInTheDocument();
+    expect(screen.getAllByRole("tab", { name: /Frontend/i }).length).toBeGreaterThanOrEqual(1);
     expect(screen.getByRole("tab", { name: /Backend/i })).toBeInTheDocument();
     expect(screen.getByText("React")).toBeInTheDocument();
     expect(screen.getByText(/95%/)).toBeInTheDocument();

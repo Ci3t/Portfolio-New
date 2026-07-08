@@ -2,14 +2,28 @@
 
 import { useRef } from "react";
 import { useScanMode } from "./ScanModeProvider";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
+
+type LenisScrollWindow = Window & {
+  lenis?: {
+    scrollTo: (
+      target: HTMLElement,
+      options?: {
+        offset?: number;
+        duration?: number;
+        easing?: (time: number) => number;
+      }
+    ) => void;
+  };
+};
 
 const nodes = [
-  { id: "about", label: "IDENTITY", top: "20%", left: "10%" },
-  { id: "projects", label: "DEPLOYMENTS", top: "35%", left: "85%" },
-  { id: "experience", label: "CHRONICLES", top: "50%", left: "15%" },
-  { id: "stack", label: "CAPABILITIES", top: "65%", left: "80%" },
-  { id: "contact", label: "UPLINK", top: "80%", left: "20%" },
+  { id: "about", label: "ABOUT", top: "20%", left: "10%" },
+  { id: "projects", label: "PROJECTS", top: "35%", left: "85%" },
+  { id: "experience", label: "EXPERIENCE", top: "50%", left: "15%" },
+  { id: "recommendation", label: "REFERENCE", top: "62%", left: "30%" },
+  { id: "stack", label: "SKILLS", top: "72%", left: "80%" },
+  { id: "contact", label: "CONTACT", top: "84%", left: "20%" },
 ];
 
 export function PortfolioHUD() {
@@ -21,8 +35,14 @@ export function PortfolioHUD() {
   const handleNodeClick = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
-      if ((window as any).lenis) {
-        (window as any).lenis.scrollTo(el, { offset: -50, duration: 1.5, easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+      const smoothWindow = window as unknown as LenisScrollWindow;
+
+      if (smoothWindow.lenis) {
+        smoothWindow.lenis.scrollTo(el, {
+          offset: -50,
+          duration: 1.5,
+          easing: (time: number) => Math.min(1, 1.001 - Math.pow(2, -10 * time)),
+        });
       } else {
         el.scrollIntoView({ behavior: "smooth" });
       }
@@ -40,7 +60,7 @@ export function PortfolioHUD() {
         >
           {/* Scan overlay effect */}
           <div className="absolute inset-0 bg-primary/5 mix-blend-screen pointer-events-none" />
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(168,85,247,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(168,85,247,0.05)_1px,transparent_1px)] bg-[size:100px_100px] pointer-events-none" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-[size:100px_100px] pointer-events-none" />
           <motion.div 
             initial={{ top: "-10%" }}
             animate={{ top: "110%" }}
@@ -55,7 +75,7 @@ export function PortfolioHUD() {
             style={{ zIndex: 51 }}
           >
             {/* Draw a vertical spine line */}
-            <line x1="50%" y1="0" x2="50%" y2="100%" stroke="rgba(168,85,247,0.2)" strokeWidth="1" strokeDasharray="4 4" />
+            <line x1="50%" y1="0" x2="50%" y2="100%" stroke="rgba(6,182,212,0.2)" strokeWidth="1" strokeDasharray="4 4" />
             
             {nodes.map((node) => {
               const isHovered = hoveredSection === node.id;
@@ -69,7 +89,7 @@ export function PortfolioHUD() {
                     y1={node.top}
                     x2={node.left}
                     y2={node.top}
-                    stroke={isHovered ? "#22d3ee" : "rgba(168,85,247,0.4)"}
+                    stroke={isHovered ? "#22d3ee" : "rgba(6,182,212,0.4)"}
                     strokeWidth={isHovered ? "2" : "1"}
                   />
                 </g>
@@ -114,7 +134,7 @@ export function PortfolioHUD() {
             className="absolute top-24 right-8 px-4 py-2 border border-primary/50 text-primary font-mono text-xs uppercase tracking-widest hover:bg-primary/10 transition-colors pointer-events-auto"
             style={{ zIndex: 53 }}
           >
-            [X] Abort Scan
+            Close
           </button>
         </motion.div>
       )}

@@ -7,7 +7,7 @@ export const contact: {
   actions: ContactAction[];
 } = {
   email: "ranigfx@gmail.com",
-  headline: "Secure Uplink",
+  headline: "Contact",
   subline: "Available for frontend, full-stack, and AI product roles.",
   actions: [
     {
@@ -20,22 +20,32 @@ export const contact: {
     {
       id: "linkedin",
       label: "LinkedIn",
-      href: "https://www.linkedin.com/in/rani-ali/",
+      href: "https://www.linkedin.com/in/rani-ali-b2a78519a/",
       kind: "linkedin",
-      placeholder: true,
     },
     {
       id: "github",
       label: "GitHub",
-      href: "https://github.com/Ci3t",
+      href: "https://github.com/Ci3t/",
       kind: "github",
-      placeholder: true,
+    },
+    {
+      id: "contribute",
+      label: "Contribute / Source",
+      href: "https://github.com/Ci3t/",
+      kind: "contribute",
+    },
+    {
+      id: "recommendation",
+      label: "Recommendation Letter",
+      href: "/Samplead-Recommendation.pdf",
+      kind: "recommendation",
     },
     {
       id: "cv",
       label: "Download CV",
+      href: "/CV-updated.pdf",
       kind: "cv",
-      placeholder: true,
     },
   ],
 };

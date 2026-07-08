@@ -70,24 +70,24 @@ export function MouseTrail() {
             lastPoint.x, lastPoint.y
           );
           // Purple to transparent
-          grad.addColorStop(0, "rgba(168, 85, 247, 0)"); // Tail end (oldest)
-          grad.addColorStop(1, "rgba(168, 85, 247, 0.8)"); // Head (newest)
+          grad.addColorStop(0, "rgba(6, 182, 212, 0)"); // Tail end (oldest)
+          grad.addColorStop(1, "rgba(6, 182, 212, 0.8)"); // Head (newest)
           
           ctx.strokeStyle = grad;
           ctx.lineWidth = 4;
           ctx.lineCap = "round";
           ctx.lineJoin = "round";
           ctx.shadowBlur = 15;
-          ctx.shadowColor = "rgba(168, 85, 247, 0.5)";
+          ctx.shadowColor = "rgba(6, 182, 212, 0.5)";
           ctx.stroke();
         }
         
         // Draw the head glow
         ctx.beginPath();
         ctx.arc(lastPoint.x, lastPoint.y, 4, 0, Math.PI * 2);
-        ctx.fillStyle = "#d8b4fe";
+        ctx.fillStyle = "#a5f3fc";
         ctx.shadowBlur = 20;
-        ctx.shadowColor = "#a855f7";
+        ctx.shadowColor = "#06b6d4";
         ctx.fill();
       }
 

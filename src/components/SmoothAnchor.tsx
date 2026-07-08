@@ -15,7 +15,7 @@ export function SmoothAnchor({ href, children, onClick, ...props }: SmoothAnchor
       if (target) {
         try {
           window.dispatchEvent(new CustomEvent("lenisScrollTo", { detail: { target } }));
-        } catch (e) {
+        } catch {
           target.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       }

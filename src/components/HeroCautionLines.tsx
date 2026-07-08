@@ -49,13 +49,14 @@ export function HeroCautionLines() {
       <MovingBand
         text={band2Text}
         reverse
-        className="hero-band hero-band-violet absolute -right-1/4 bottom-[10%] h-9 w-[155%] rotate-4 overflow-hidden border-y border-violet-400/20 bg-violet-400/5 font-mono text-[9px] font-bold uppercase tracking-[0.24em] text-violet-400/55 shadow-[0_0_60px_rgba(109,9,255,0.1)]"
+        className="hero-band hero-band-violet absolute -right-1/4 bottom-[10%] h-9 w-[155%] rotate-4 overflow-hidden border-y border-cyan-400/20 bg-cyan-400/5 font-mono text-[9px] font-bold uppercase tracking-[0.24em] text-cyan-400/55 shadow-[0_0_60px_rgba(0,204,220,0.1)]"
       />
       <MovingBand
         text="INNOVATIVE / RESPONSIVE / ACCESSIBLE / "
         reverse
-        className="hero-band hero-band-purple absolute -right-1/3 top-[60%] h-7 w-[150%] -rotate-12 overflow-hidden border-y border-purple-400/10 bg-purple-400/5 font-mono text-[8px] uppercase tracking-[0.24em] text-purple-400/38"
+        className="hero-band hero-band-cyan absolute -right-1/3 top-[60%] h-7 w-[150%] -rotate-12 overflow-hidden border-y border-cyan-400/10 bg-cyan-400/5 font-mono text-[8px] uppercase tracking-[0.24em] text-cyan-400/38"
       />
     </div>
   );
 }
+

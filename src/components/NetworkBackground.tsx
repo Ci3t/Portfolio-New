@@ -88,7 +88,7 @@ export function NetworkBackground() {
 
       for (const point of points) {
         const pointerDistance = Math.hypot(point.x - pointer.x, point.y - pointer.y);
-        context.fillStyle = pointerDistance < 190 ? "rgba(251,188,0,0.92)" : "rgba(0,204,220,0.44)";
+        context.fillStyle = pointerDistance < 190 ? "rgba(57,211,83,0.92)" : "rgba(6,182,212,0.44)";
         context.beginPath();
         context.arc(point.x, point.y, pointerDistance < 190 ? 2 : 1.3, 0, Math.PI * 2);
         context.fill();

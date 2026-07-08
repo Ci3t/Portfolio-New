@@ -5,16 +5,7 @@ import { SmoothAnchor } from "@/components/SmoothAnchor";
 import { contact } from "@/data/contact";
 import { navItems } from "@/data/navigation";
 import { cn } from "@/lib/utils";
-import {
-  Activity,
-  Code2,
-  Fingerprint,
-  History,
-  LayoutGrid,
-  Radio,
-  Send,
-  User,
-} from "lucide-react";
+import { Activity } from "lucide-react";
 import { motion } from "motion/react";
 
 export function SideNav() {
@@ -46,7 +37,7 @@ export function SideNav() {
           >
             {/* Minimal line drawing button */}
             <div className="relative flex h-10 items-center justify-center border border-white/20 bg-transparent px-4 font-mono text-[10px] uppercase tracking-widest text-white/70 transition-all duration-300 group-hover:border-primary group-hover:text-primary group-hover:bg-primary/5">
-              <span className="relative z-10">Establish_Connection</span>
+              <span className="relative z-10">Contact Me</span>
               <div className="absolute left-0 top-0 h-[1px] w-0 bg-primary transition-all duration-500 group-hover:w-full" />
               <div className="absolute bottom-0 right-0 h-[1px] w-0 bg-primary transition-all duration-500 group-hover:w-full" />
             </div>
@@ -113,7 +104,7 @@ export function SideNav() {
             <Activity className="h-3 w-3" />
             <span className="flex items-center gap-2">
               <span className="h-1 w-1 bg-primary animate-pulse" />
-              Sys_Status: Nom
+              Available
             </span>
           </div>
           

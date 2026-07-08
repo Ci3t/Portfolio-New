@@ -64,7 +64,7 @@ export function ProjectFrame({ label, imageUrl }: ProjectFrameProps) {
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 border-b border-white/5">
             <span className="font-display text-xl font-bold tracking-tight text-white/20">{label}</span>
             <span className="font-mono text-[10px] uppercase tracking-widest text-white/40">
-              PREVIEW_PLACEHOLDER
+              Preview coming soon
             </span>
           </div>
         )}
@@ -75,7 +75,7 @@ export function ProjectFrame({ label, imageUrl }: ProjectFrameProps) {
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 translate-y-0 group-hover/frame:opacity-100 group-hover/frame:animate-scan pointer-events-none" />
 
       <div className="absolute bottom-4 left-4 border border-white/10 bg-black/60 backdrop-blur-md px-3 py-1 font-mono text-[9px] uppercase tracking-widest text-white/70">
-        SYS.PREVIEW
+        Preview
       </div>
     </div>
   );

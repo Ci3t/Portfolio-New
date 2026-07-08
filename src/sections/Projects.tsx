@@ -13,11 +13,11 @@ export function Projects() {
       <div className="mb-12">
         <Reveal variant="mask">
           <TechLabel dim className="mb-2 block">
-            {"// DEPLOYMENTS"}
+            {"// SELECTED WORK"}
           </TechLabel>
         </Reveal>
         <Reveal variant="mask" delay={0.1}>
-          <h2 className="font-display text-4xl font-bold tracking-tighter text-white">Active Operations</h2>
+          <h2 className="font-display text-4xl font-bold tracking-tighter text-white">Projects</h2>
         </Reveal>
       </div>
 

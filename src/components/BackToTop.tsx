@@ -23,7 +23,7 @@ export function BackToTop() {
       if (typeof window !== "undefined") {
         window.dispatchEvent(new CustomEvent("lenisScrollTo", { detail: { target: 0 } }));
       }
-    } catch (e) {
+    } catch {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
     window.history.replaceState(null, "", "#hero");

@@ -87,7 +87,7 @@ export function HeroBackground() {
       draw(ctx: CanvasRenderingContext2D) {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(168, 85, 247, 0.7)"; // Purple
+        ctx.fillStyle = "rgba(6, 182, 212, 0.7)"; // cyan
         ctx.fill();
       }
     }
@@ -132,7 +132,7 @@ export function HeroBackground() {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(168, 85, 247, ${0.2 - dist / 600})`;
+            ctx.strokeStyle = `rgba(6, 182, 212, ${0.2 - dist / 600})`;
             ctx.stroke();
           }
         }
@@ -184,13 +184,11 @@ export function HeroBackground() {
   }, []);
 
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden bg-[#09090b]">
+    <div className="absolute inset-0 z-0 overflow-hidden bg-background">
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full opacity-60" />
-      {/* Gradient overlay for depth */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#09090b_100%)] pointer-events-none" />
-      {/* Subtle purple glow */}
-      <div className="absolute -top-[20%] -right-[10%] h-[700px] w-[700px] rounded-full bg-primary/10 blur-[120px] mix-blend-screen opacity-50 pointer-events-none" />
-      <div className="absolute -bottom-[20%] -left-[10%] h-[800px] w-[800px] rounded-full bg-secondary/10 blur-[150px] mix-blend-screen opacity-40 pointer-events-none" />
+      <div className="pointer-events-none absolute inset-0 bg-background/40" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-primary/25 shadow-[0_0_34px_rgba(var(--color-primary-rgb),0.2)]" />
+      <div className="pointer-events-none absolute inset-y-0 right-[12%] w-px bg-[var(--color-success)]/10 shadow-[0_0_36px_rgba(var(--color-success-rgb),0.16)]" />
     </div>
   );
 }

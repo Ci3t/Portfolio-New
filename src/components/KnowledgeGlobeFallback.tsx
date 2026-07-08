@@ -29,7 +29,7 @@ export function KnowledgeGlobeFallback() {
         <div className="absolute right-0 top-1/2 h-1/2 w-px -translate-y-1/2 bg-gradient-to-b from-transparent via-primary/70 to-transparent" />
       </div>
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="relative flex h-28 w-28 items-center justify-center border border-primary/40 bg-background/70 shadow-[0_0_40px_rgba(251,188,0,0.18)]">
+        <div className="relative flex h-28 w-28 items-center justify-center border border-primary/40 bg-background/70 shadow-[0_0_40px_rgba(6,182,212,0.18)]">
           <span className="font-display text-headline-md text-high-def-white">CORE</span>
         </div>
       </div>

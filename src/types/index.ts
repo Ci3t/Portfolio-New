@@ -43,7 +43,7 @@ export interface ContactAction {
   label: string;
   href?: string;
   value?: string;
-  kind: "email" | "linkedin" | "github" | "cv";
+  kind: "email" | "linkedin" | "github" | "cv" | "contribute" | "recommendation";
   placeholder?: boolean;
 }
 
