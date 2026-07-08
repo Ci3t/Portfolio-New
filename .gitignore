@@ -39,4 +39,29 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-/Raw
+
+# local planning / AI agent artifacts
+/Raw/
+/.agents/
+/.codex/
+AGENTS.md
+*.agents.md
+*.agent.md
+*.prompt.md
+
+# local reference material and generated previews
+/refernce design/
+/reference design/
+/tmp/
+dev.html
+dev*.html
+dev.log
+dev*.log
+dev.pid
+dev*.pid
+
+# local tool/cache noise
+.turbo/
+.cache/
+.eslintcache
+*.local
